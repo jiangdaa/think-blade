@@ -195,13 +195,17 @@ class Blade implements TemplateHandlerInterface
             $template = str_replace(['/', ':'], $depr, substr($template, 1));
         }
         $template = $path . ltrim($template, '/') . '.' . ltrim($this->config['view_suffix'], '.');
-        ;
-        if ($request->route('addon')) {
-            if (str_starts_with($template, $rootPath = root_path('view'))) {
-                $path = $this->app->getRootPath() . 'app' . DIRECTORY_SEPARATOR . str_replace('@', DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR, $rowTemplateStr);
-                $template = $path . '.' . ltrim($this->config['view_suffix'], '.');
-                ;
-            }
+//        ;
+//        if ($request->route('addon')) {
+//            if (str_starts_with($template, $rootPath = root_path('view'))) {
+//                $path = $this->app->getRootPath() . 'app' . DIRECTORY_SEPARATOR . str_replace('@', DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR, $rowTemplateStr);
+//                $template = $path . '.' . ltrim($this->config['view_suffix'], '.');
+//            }
+//        }
+        if(str_starts_with($rowTemplateStr,':')){
+            $rowTemplateStr = substr($rowTemplateStr,1);
+            $path = $this->app->getRootPath() . 'app' . DIRECTORY_SEPARATOR . str_replace('@', DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR, $rowTemplateStr);
+            $template = $path . '.' . ltrim($this->config['view_suffix'], '.');
         }
 
         return $template;
