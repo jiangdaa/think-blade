@@ -52,7 +52,7 @@
     "autoload": {
         "psr-4": {
             "think\\view\\driver\\": "driver",
-            "jiangdaa\\think\\Blade\\": "src-next",
+            "jiangdaa\\Think\\Blade\\": "src-next",
             "Illuminate\\Filesystem\\": "lib/filesystem"
         },
         "files": [

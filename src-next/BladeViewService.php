@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace jiangdaa\think\Blade;
+namespace jiangdaa\Think\Blade;
 
 use Illuminate\Contracts\Container\Container as ContainerContract;
 use Illuminate\Contracts\View\Factory as FactoryIlluminate;

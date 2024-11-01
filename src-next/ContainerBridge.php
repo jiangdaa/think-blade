@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace jiangdaa\think\Blade;
+namespace jiangdaa\Think\Blade;
 
 use Closure;
 use Illuminate\Contracts\Container\Container as ContainerContract;
