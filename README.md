@@ -8,7 +8,7 @@ blade版本: v9.52.15
 
 ## Installation
 ```
-composer require tmaic/blade
+composer require jiangdaa/think-blade
 ```
 
 #### view.php

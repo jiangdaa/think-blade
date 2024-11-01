@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace jiangdaa\Think\Blade;
+namespace jiangdaa\think\Blade;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use think\Container;

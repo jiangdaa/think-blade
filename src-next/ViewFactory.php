@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace jiangdaa\Think\Blade;
+namespace jiangdaa\think\Blade;
 
 use Illuminate\Contracts\View\Engine;
 use Illuminate\View\Compilers\BladeCompiler;

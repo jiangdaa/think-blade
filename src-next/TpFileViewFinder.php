@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace jiangdaa\Think\Blade;
+namespace jiangdaa\think\Blade;
 
 use Illuminate\View\ViewFinderInterface;
 use think\App;
