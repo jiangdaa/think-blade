@@ -207,7 +207,6 @@ class Blade implements TemplateHandlerInterface
                 $template = $path . '.' . ltrim($this->config['view_suffix'], '.');
             }
         }
-
         return $template;
     }
 
