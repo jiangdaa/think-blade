@@ -198,8 +198,8 @@ class Blade implements TemplateHandlerInterface
 
         if (str_starts_with($rowTemplateStr, ':')) {
             if (str_starts_with($rowTemplateStr, '::')) {
-                $rowTemplateStr = substr($rowTemplateStr, 1);
-                $path = $this->app->getRootPath() . 'app' . DIRECTORY_SEPARATOR . str_replace('@', DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR, $rowTemplateStr);
+                $rowTemplateStr = str_replace('::','',$rowTemplateStr);
+                $path = $this->app->getRootPath() . str_replace('@', DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR, $rowTemplateStr);
                 $template = $path . '.' . ltrim($this->config['view_suffix'], '.');
             }else{
                 $rowTemplateStr = substr($rowTemplateStr, 1);
