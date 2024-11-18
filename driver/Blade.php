@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace think\view\driver;
 
+use jiangdaa\think\Blade\BladeViewService;
+use jiangdaa\think\Blade\ViewFactory;
 use RuntimeException;
 use think\App;
 use think\contract\TemplateHandlerInterface;
 use think\helper\Str;
 use think\template\exception\TemplateNotFoundException;
-use jiangdaa\think\Blade\BladeViewService;
-use jiangdaa\think\Blade\ViewFactory;
 use function call_user_func_array;
 use function get_class;
 use function is_object;
@@ -153,13 +153,13 @@ class Blade implements TemplateHandlerInterface
             if (is_dir($this->app->getAppPath() . $view)) {
                 $path = isset($app) ?
                     $this->app->getBasePath() . (
-                        $appName ? $appName . DIRECTORY_SEPARATOR : ''
+                    $appName ? $appName . DIRECTORY_SEPARATOR : ''
                     ) . $view . DIRECTORY_SEPARATOR :
                     $this->app->getAppPath() . $view . DIRECTORY_SEPARATOR;
             } else {
                 $path = $this->app->getRootPath() . $view . DIRECTORY_SEPARATOR . (
                     $appName ? $appName . DIRECTORY_SEPARATOR : ''
-                );
+                    );
             }
         }
 
@@ -195,17 +195,18 @@ class Blade implements TemplateHandlerInterface
             $template = str_replace(['/', ':'], $depr, substr($template, 1));
         }
         $template = $path . ltrim($template, '/') . '.' . ltrim($this->config['view_suffix'], '.');
-//        ;
-//        if ($request->route('addon')) {
-//            if (str_starts_with($template, $rootPath = root_path('view'))) {
-//                $path = $this->app->getRootPath() . 'app' . DIRECTORY_SEPARATOR . str_replace('@', DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR, $rowTemplateStr);
-//                $template = $path . '.' . ltrim($this->config['view_suffix'], '.');
-//            }
-//        }
-        if(str_starts_with($rowTemplateStr,':')){
-            $rowTemplateStr = substr($rowTemplateStr,1);
-            $path = $this->app->getRootPath() . 'app' . DIRECTORY_SEPARATOR . str_replace('@', DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR, $rowTemplateStr);
-            $template = $path . '.' . ltrim($this->config['view_suffix'], '.');
+
+        if (str_starts_with($rowTemplateStr, ':')) {
+            if (str_starts_with($rowTemplateStr, '::')) {
+                $rowTemplateStr = substr($rowTemplateStr, 1);
+                $path = $this->app->getRootPath() . 'app' . DIRECTORY_SEPARATOR . str_replace('@', DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR, $rowTemplateStr);
+                $template = $path . '.' . ltrim($this->config['view_suffix'], '.');
+            }else{
+                $rowTemplateStr = substr($rowTemplateStr, 1);
+                $path = $this->app->getRootPath() . 'app' . DIRECTORY_SEPARATOR . str_replace('@', DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR, $rowTemplateStr);
+                $template = $path . '.' . ltrim($this->config['view_suffix'], '.');
+            }
+
         }
 
         return $template;
@@ -245,9 +246,9 @@ class Blade implements TemplateHandlerInterface
         $debugInfo = array_map(function ($value) {
             if (is_object($value)) {
                 if (method_exists($value, '__toString')) {
-                    $value = (string) $value;
+                    $value = (string)$value;
                     if (mb_strlen($value) > 36) {
-                        $value = mb_substr((string) $value, 0, 36) . '...';
+                        $value = mb_substr((string)$value, 0, 36) . '...';
                     }
                 } else {
                     $value = get_class($value) . '#' . \spl_object_id($value);
