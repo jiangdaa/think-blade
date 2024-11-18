@@ -206,7 +206,6 @@ class Blade implements TemplateHandlerInterface
                 $path = $this->app->getRootPath() . 'app' . DIRECTORY_SEPARATOR . str_replace('@', DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR, $rowTemplateStr);
                 $template = $path . '.' . ltrim($this->config['view_suffix'], '.');
             }
-
         }
 
         return $template;
